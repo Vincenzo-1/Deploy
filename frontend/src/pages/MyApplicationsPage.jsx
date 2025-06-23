@@ -23,8 +23,10 @@ const MyApplicationsPage = () => {
 
   // Funzione memoizzata (useCallback) per recuperare le candidature dell'utente dal backend.
   const fetchMyApplications = useCallback(async () => {
-    if (!user?.email) {
-      setError('Impossibile recuperare le candidature: utente non identificato o email mancante.');
+    // L'email dell'utente non è più necessaria qui, poiché il backend la ottiene dalla sessione.
+    // Tuttavia, manteniamo il controllo su 'user' per assicurarci che il contesto Auth sia caricato.
+    if (!user) {
+      setError('Impossibile recuperare le candidature: utente non autenticato.');
       setIsLoading(false);
       setApplications([]);
       return;
@@ -32,8 +34,8 @@ const MyApplicationsPage = () => {
     setIsLoading(true); // Inizia il caricamento.
     setError('');       // Resetta errori precedenti.
     try {
-      // Chiama la funzione getMyApplicationsApi del servizio API, passando l'email dell'utente.
-      const response = await getMyApplicationsApi(user.email);
+      // Chiama la funzione getMyApplicationsApi del servizio API.
+      const response = await getMyApplicationsApi(); // Non si passa più user.email
       // Imposta lo stato 'applications' con i dati ricevuti (o un array vuoto se response.data è null/undefined).
       setApplications(response.data || []);
     } catch (err) {

@@ -31,7 +31,7 @@ AuthContext.Consumer – (opzionale) componente per leggere il valore dal contes
 export const AuthProvider = ({ children }) => { //funizione React a cui vengono passati i children, cioè i componenti che ha al suo interno.(tutto cio che è dichiarato all'interno del suo oggeetto value: user, isAuthenticated, isLoading, logout, refreshAuthStatus) sarà accessibile a tutti i componenti figli che usano questo context.
     
     const [user, setUser] = useState(null);
-    const [isAuthenticated, setIsAutenthicated]= useState(false); //stato viene inizializzato a false
+    const [isAuthenticated, setIsAuthenticated]= useState(false); // Corretto typo: setIsAutenthicated -> setIsAuthenticated
     const [isLoading, setIsLoading] = useState(true);
 
     //- **Cosa fa:** Definisce una funzione asincrona chiamata `checkAuthStatus` che serve a controllare se l’utente è autenticato.
@@ -79,11 +79,11 @@ poi va data.utente perche lo prende da authroutes del backend quando faccio il g
             if (response.data.utente){
                  // rappresenta i dati dell’utente autenticato che il backend restituisce al frontend dopo una chiamata API (tramite la funzione getCurrentUser
                 setUser(response.data.utente); //Se la risposta contiene i dati dell'utente, li imposta nello stato `user`. (è un cambio di stato che avviene soltanto a livello del frontend, perchè ricordiamoci che siamo in un componete che wrappera tutto il resto dell'applicazione, quindi tutti i componenti figli avranno accesso a questo stato)
-                setIsAutenthicated(true); //Imposta lo stato di autenticazione a true, indicando che l'utente è autenticato.
+                setIsAuthenticated(true); //Imposta lo stato di autenticazione a true, indicando che l'utente è autenticato.
 
             } else {
                 setUser(null); //Se non ci sono dati dell'utente, imposta `user` a null. Resetta utente
-                setIsAutenthicated(false); //Imposta lo stato di autenticazione a false, indicando che l'utente non è autenticato.
+                setIsAuthenticated(false); //Imposta lo stato di autenticazione a false, indicando che l'utente non è autenticato.
             }
         }catch (error) {
                 console.error('Nessun utente autenticato o errore:', error.response?.data?.message || error.message);
@@ -94,7 +94,7 @@ error.response: esiste una risposta dal server? (axios salva la risposta qui)
 ⚠️ Se uno qualsiasi di questi livelli non esiste, il tutto restituisce undefined, senza lanciare un errore.*/
 
                 setUser(null); //Se c'è un errore (ad esempio, se l'utente non è autenticato), imposta `user` a null.
-                setIsAutenthicated(false); //Imposta lo stato di autenticazione a false, indicando che l'utente non è autenticato.
+                setIsAuthenticated(false); //Imposta lo stato di autenticazione a false, indicando che l'utente non è autenticato.
             }
             setIsLoading(false); //Dice all’app che il controllo è finito
         },[]); //Questo approccio è utile per evitare che la funzione venga ricreata inutilmente a ogni render, migliorando così le performance e la prevedibilità del comportamento del componente. [] serve per farlo invocare solo all'avvio 
