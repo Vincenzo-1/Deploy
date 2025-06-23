@@ -51,12 +51,13 @@ const Navbar = () => {
     // - "navbar": per lo stile base della navbar.
     // - "navbar-expand-lg": per espandere la navbar su schermi grandi (large) e collassarla su schermi più piccoli.
     // - "navbar-dark bg-dark": per uno schema di colori scuro.
-    // - "mb-4": margine inferiore (margin-bottom) di 4 unità Bootstrap.
+    // - "fixed-top": per fissare la navbar in cima alla pagina.
     // La classe "w-100" è stata aggiunta per rendere la navbar full-width.
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark mb-4 w-100">
+    // "mb-4" è stato rimosso perché non necessario con fixed-top.
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 fixed-top">
       {/* Contenitore fluido per la navbar, occupa l'intera larghezza. */}
         {/* Brand/Logo della navbar, un Link che punta alla homepage. */}
-      <div class="container-fluid">
+      <div className="container-fluid">
         <Link className="navbar-brand" to="/">JobBoard</Link>
         {/* Pulsante "toggler" per la navbar su schermi piccoli (hamburger menu).
             Controlla il collasso del div con id "navbarNav". */}
@@ -99,12 +100,11 @@ const Navbar = () => {
               )}
 
               {/* Link "Tutti gli Annunci" */}
-              {/* Mostra "Tutti gli Annunci" se:
-                  - L'utente è sulla pagina /mie-candidature (specific requirement 2)
-                  - OPPURE l'utente non è su /dashboard-applier, /annunci, o /mie-candidature (general visibility)
+              {/* Mostra "Tutti gli Annunci" tranne quando l'utente è su /dashboard-candidato.
+                  La richiesta specifica che DEVE essere visibile su /mie-candidature.
+                  Questa logica semplificata copre entrambi i casi.
               */}
-              {(location.pathname === '/mie-candidature' || 
-               (!(location.pathname === '/dashboard-applier' || location.pathname === '/annunci' || location.pathname === '/mie-candidature'))) && (
+              {location.pathname !== '/dashboard-candidato' && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/annunci">Tutti gli Annunci</Link>
                 </li>

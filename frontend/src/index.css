@@ -24,10 +24,11 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
+  /* display: flex; */ /* Potrebbe interferire con layout a pagina intera scrollabile */
+  /* place-items: center; */ /* Potrebbe interferire con layout a pagina intera scrollabile */
   min-width: 320px;
   min-height: 100vh;
+  padding-top: 70px; /* Aggiunto per compensare la navbar fissa. Regolare se necessario. */
 }
 
 h1 {
