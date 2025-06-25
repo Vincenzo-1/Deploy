@@ -41,3 +41,8 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Stile personalizzato per rendere la navbar più scura */
+.navbar-custom-darker {
+  background-color: #1A1A1A !important; /* Usare !important se necessario per sovrascrivere Bootstrap */
+}

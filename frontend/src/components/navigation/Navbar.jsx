@@ -50,11 +50,12 @@ const Navbar = () => {
     // Elemento <nav> HTML5 con classi Bootstrap:
     // - "navbar": per lo stile base della navbar.
     // - "navbar-expand-lg": per espandere la navbar su schermi grandi (large) e collassarla su schermi più piccoli.
-    // - "navbar-dark bg-dark": per uno schema di colori scuro.
+    // - "navbar-dark": per testo e link chiari.
+    // - "navbar-custom-darker": classe personalizzata per sfondo più scuro.
     // - "fixed-top": per fissare la navbar in cima alla pagina.
     // La classe "w-100" è stata aggiunta per rendere la navbar full-width.
-    // "mb-4" è stato rimosso perché non necessario con fixed-top.
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100 fixed-top">
+    // "bg-dark" è stata rimossa in favore di "navbar-custom-darker".
+    <nav className="navbar navbar-expand-lg navbar-dark navbar-custom-darker w-100 fixed-top">
       {/* Contenitore fluido per la navbar, occupa l'intera larghezza. */}
         {/* Brand/Logo della navbar, un Link che punta alla homepage. */}
       <div className="container-fluid">
